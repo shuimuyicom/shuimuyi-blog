@@ -5,9 +5,10 @@ import { getCategoryById } from "@/lib/categories";
 import { getPostsByCategory } from "@/lib/posts";
 
 export async function generateMetadata(
-  props: { params: { category: string } }
+  props: { params: Promise<{ category: string }> }
 ): Promise<Metadata> {
-  const category = props.params.category;
+  const params = await props.params;
+  const category = params.category;
   const categoryData = getCategoryById(category);
   
   if (!categoryData) {
@@ -23,9 +24,9 @@ export async function generateMetadata(
 }
 
 export default async function CategoryPage(props: {
-  params: { category: string };
+  params: Promise<{ category: string }>;
 }) {
-  const { params } = props;
+  const params = await props.params;
   const categoryId = params.category;
   const category = getCategoryById(categoryId);
   

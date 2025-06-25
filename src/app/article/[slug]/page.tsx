@@ -7,8 +7,9 @@ import ScrollToTop from "@/components/ScrollToTop";
 // 使用www子域名确保与重定向一致
 const SITE_URL = "https://www.shuimuyi.com";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const post = await getPostBySlug(resolvedParams.slug);
   
   if (!post) {
     return {
@@ -61,10 +62,10 @@ export async function generateStaticParams() {
 }
 
 export default async function ArticlePage(props: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const { params } = props;
+  const params = await props.params;
   const slug = params.slug;
   const post = await getPostBySlug(slug);
   
