@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "slugs": "node scripts/generate-slugs.js"
+    "slugs": "node scripts/generate-slugs.js",
+    "deploy": "vercel --prod",
+    "deploy-preview": "vercel"
   },
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
