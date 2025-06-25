@@ -91,7 +91,7 @@ export default function Home() {
               </h1>
               
               <div className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10 text-center md:text-left">
-                📚 终身学习者｜🚀 创业者｜🧩 产品经理 ｜🤔 哲学硕士
+                📚 终身学习者｜🚀 中华国学探索者｜🧩 产品经理 ｜🤔 哲学硕士
               </div>
               
               {/* 成就/标签列表 */}
@@ -103,7 +103,7 @@ export default function Home() {
                     </svg>
                   </div>
                   <div className="text-gray-700 dark:text-gray-200">
-                    研习中医养生、玄学命理多年；
+                    终身学习是我的人生底色；
                   </div>
                 </div>
                 
@@ -114,7 +114,7 @@ export default function Home() {
                     </svg>
                   </div>
                   <div className="text-gray-700 dark:text-gray-200">
-                    致力于将东方智慧科学产品化；
+                    享受在思辨的乐趣与创造的激情之间自由切换；
                   </div>
                 </div>
                 
@@ -125,7 +125,7 @@ export default function Home() {
                     </svg>
                   </div>
                   <div className="text-gray-700 dark:text-gray-200">
-                    坚持学术传承，分享智慧结晶；
+                    致力于打造既有深度又不乏温度的产品体验；
                   </div>
                 </div>
                 
