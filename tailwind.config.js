@@ -129,6 +129,8 @@ module.exports = {
             h1: {
               fontSize: '2.25em',
               letterSpacing: '-0.025em',
+              marginTop: '3em',
+              marginBottom: '2em',
               '@media (max-width: 640px)': {
                 fontSize: '1.75em',
               },
@@ -136,6 +138,8 @@ module.exports = {
             h2: {
               fontSize: '1.75em',
               letterSpacing: '-0.025em',
+              marginTop: '2em',
+              marginBottom: '1.5em',
               borderBottom: `1px solid ${theme('colors.bg.200')}`,
               paddingBottom: '0.5rem',
               '@media (max-width: 640px)': {
@@ -144,9 +148,26 @@ module.exports = {
             },
             h3: {
               fontSize: '1.5em',
+              marginTop: '1.5em',
+              marginBottom: '1em',
             },
             h4: {
               fontSize: '1.25em',
+              marginTop: '1.25em',
+              marginBottom: '0.75em',
+            },
+            h5: {
+              fontSize: '1em',
+              marginTop: '1em',
+              marginBottom: '0.75em',
+            },
+            h6: {
+              fontSize: '0.875em',
+              marginTop: '1em',
+              marginBottom: '0.5em',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              fontWeight: '600',
             },
             a: {
               color: theme('colors.accent.600'),

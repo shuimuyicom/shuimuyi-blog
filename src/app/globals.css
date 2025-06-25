@@ -78,7 +78,7 @@
   }
 
   /* 文章排版样式 */
-  .prose h1, .prose h2, .prose h3 {
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
     @apply tracking-tight;
   }
   
@@ -95,6 +95,21 @@
   .prose h3 {
     @apply text-xl font-medium mt-6 mb-4 text-ink-600 dark:text-bg-200;
     @apply leading-relaxed;
+  }
+  
+  .prose h4 {
+    @apply text-lg font-medium mt-5 mb-3 text-ink-600 dark:text-bg-200;
+    @apply leading-relaxed;
+  }
+  
+  .prose h5 {
+    @apply text-base font-medium mt-4 mb-3 text-ink-600 dark:text-bg-200;
+    @apply leading-relaxed;
+  }
+  
+  .prose h6 {
+    @apply text-sm font-medium mt-4 mb-2 text-ink-600 dark:text-bg-200;
+    @apply leading-relaxed uppercase tracking-wide;
   }
   
   /* 统一正文样式 */
@@ -272,4 +287,112 @@
 .prose ol ul, 
 .prose ol ol {
   @apply my-2 ml-4;
+}
+
+/* 增强的markdown元素样式 */
+.prose del, .prose s {
+  @apply text-ink-500 dark:text-ink-400 line-through;
+}
+
+.prose mark {
+  @apply bg-yellow-200 dark:bg-yellow-700/40 text-ink-800 dark:text-bg-100 px-1 py-0.5 rounded;
+}
+
+.prose kbd {
+  @apply bg-bg-200 dark:bg-ink-700 text-ink-700 dark:text-bg-100 px-2 py-1 rounded text-sm font-mono;
+  @apply border border-bg-300 dark:border-ink-600 shadow-sm;
+}
+
+.prose abbr {
+  @apply border-b border-dotted border-ink-400 dark:border-ink-500 cursor-help;
+}
+
+.prose sub, .prose sup {
+  @apply text-xs;
+}
+
+/* 定义列表样式 */
+.prose dl {
+  @apply my-6;
+}
+
+.prose dt {
+  @apply font-semibold text-ink-800 dark:text-bg-50 mt-4 first:mt-0;
+}
+
+.prose dd {
+  @apply ml-6 mt-1 text-ink-600 dark:text-bg-200;
+}
+
+/* 任务列表样式 */
+.prose .task-list-item {
+  @apply list-none;
+}
+
+.prose .task-list-item input[type="checkbox"] {
+  @apply mr-2;
+}
+
+/* 脚注样式 */
+.prose .footnote-ref {
+  @apply text-accent-600 dark:text-accent-300 no-underline;
+}
+
+.prose .footnotes {
+  @apply mt-12 pt-8 border-t border-bg-200 dark:border-ink-700 text-sm;
+}
+
+.prose .footnotes ol {
+  @apply pl-0;
+}
+
+.prose .footnotes li {
+  @apply pl-6 relative;
+}
+
+.prose .footnotes li::marker {
+  @apply text-accent-600 dark:text-accent-300;
+}
+
+/* 数学公式支持 */
+.prose .katex {
+  @apply font-serif;
+}
+
+.prose .katex-display {
+  @apply my-6 text-center overflow-x-auto;
+}
+
+/* 图片标题样式 */
+.prose figure {
+  @apply my-8;
+}
+
+.prose figcaption {
+  @apply text-center text-sm text-ink-500 dark:text-ink-400 mt-2 italic;
+}
+
+/* 警告框样式 */
+.prose .admonition {
+  @apply my-6 p-4 rounded-md border-l-4;
+}
+
+.prose .admonition.note {
+  @apply bg-blue-50 dark:bg-blue-900/20 border-blue-400 dark:border-blue-500;
+}
+
+.prose .admonition.warning {
+  @apply bg-yellow-50 dark:bg-yellow-900/20 border-yellow-400 dark:border-yellow-500;
+}
+
+.prose .admonition.danger {
+  @apply bg-red-50 dark:bg-red-900/20 border-red-400 dark:border-red-500;
+}
+
+.prose .admonition.info {
+  @apply bg-cyan-50 dark:bg-cyan-900/20 border-cyan-400 dark:border-cyan-500;
+}
+
+.prose .admonition.success {
+  @apply bg-green-50 dark:bg-green-900/20 border-green-400 dark:border-green-500;
 }
