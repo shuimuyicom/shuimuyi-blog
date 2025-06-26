@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
     apple: "/favicon.ico",
   },
-  // 使用绝对URL确保社交媒体平台正确读取图像
+  // 使用动态生成的OG图片，确保社交媒体平台正确读取
   openGraph: {
     type: "website",
     locale: "zh_CN",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: SITE_TITLE,
     images: [
       {
-        url: `${SITE_URL}/images/og/screenshot.png`,
+        url: `${SITE_URL}/api/og?title=${encodeURIComponent(SITE_TITLE)}&subtitle=${encodeURIComponent(SITE_DESCRIPTION)}&type=default`,
         width: 1200,
         height: 630,
         alt: SITE_TITLE,
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: `${SITE_TITLE} | ${SITE_DESCRIPTION}`,
     description: "用智慧帮你渡过困境，用格局助你站得更高",
     images: [{
-      url: `${SITE_URL}/images/og/screenshot.png`,
+      url: `${SITE_URL}/api/og?title=${encodeURIComponent(SITE_TITLE)}&subtitle=${encodeURIComponent(SITE_DESCRIPTION)}&type=default`,
       width: 1200,
       height: 630,
       alt: `${SITE_TITLE} - 个人网站首页`,

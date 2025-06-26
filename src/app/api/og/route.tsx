@@ -59,7 +59,7 @@ export async function GET(request: NextRequest): Promise<ImageResponse | Respons
             justifyContent: 'center',
             background: 'linear-gradient(135deg, #f6f6f6, #e9e9f9)',
             padding: 40,
-            fontFamily: '"NotoSansSC", sans-serif',
+            fontFamily: '"NotoSansSC", "Noto Sans SC", sans-serif',
           }}
         >
           {/* 简化的卡片布局 */}
@@ -78,12 +78,13 @@ export async function GET(request: NextRequest): Promise<ImageResponse | Respons
               maxWidth: 900,
             }}
           >
-            {/* 简化标识 */}
+            {/* 网站标识 */}
             <div
               style={{
                 fontSize: 18,
                 color: '#666',
                 marginBottom: 24,
+                fontWeight: 'normal',
               }}
             >
               shuimuyi.com
@@ -97,6 +98,7 @@ export async function GET(request: NextRequest): Promise<ImageResponse | Respons
                 margin: '0 0 16px',
                 color: '#8B5CF6',
                 maxWidth: 800,
+                lineHeight: 1.2,
               }}
             >
               {title}
@@ -109,6 +111,7 @@ export async function GET(request: NextRequest): Promise<ImageResponse | Respons
                 margin: '0 0 24px',
                 color: '#4B5563',
                 maxWidth: 800,
+                lineHeight: 1.4,
               }}
             >
               {subtitle}
@@ -130,6 +133,23 @@ export async function GET(request: NextRequest): Promise<ImageResponse | Respons
                 {date} {category && `· ${category}`}
               </div>
             )}
+            
+            {/* 分类页面标识 */}
+            {type === 'category' && (
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  fontSize: 18,
+                  color: '#059669',
+                  padding: '6px 12px',
+                  backgroundColor: '#D1FAE5',
+                  borderRadius: 20,
+                }}
+              >
+                分类
+              </div>
+            )}
           </div>
         </div>
       ),
@@ -147,10 +167,12 @@ export async function GET(request: NextRequest): Promise<ImageResponse | Respons
             }
           ]
         }),
-        // 添加明确的缓存控制和内容类型头
+        // 添加明确的缓存控制和内容类型头，确保X.com等平台正确识别
         headers: {
-          'Cache-Control': 'public, max-age=3600, s-maxage=86400',
+          'Cache-Control': 'public, max-age=31536000, immutable',
           'Content-Type': 'image/png',
+          'X-Content-Type-Options': 'nosniff',
+          'Access-Control-Allow-Origin': '*',
         },
       },
     )
@@ -163,10 +185,39 @@ export async function GET(request: NextRequest): Promise<ImageResponse | Respons
     try {
       return new ImageResponse(
         (
-          <div style={{ display: 'flex', height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center', background: '#f0f0f0' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '80%', background: 'white', padding: 20, borderRadius: 10 }}>
-              <h1 style={{ fontSize: 40, textAlign: 'center', color: '#333' }}>水木易</h1>
-              <p style={{ fontSize: 24, textAlign: 'center', color: '#666' }}>总是站在科技与人文的十字路口</p>
+          <div style={{ 
+            display: 'flex', 
+            height: '100%', 
+            width: '100%', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            background: '#f0f0f0',
+            fontFamily: 'system-ui, sans-serif',
+          }}>
+            <div style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              width: '80%', 
+              background: 'white', 
+              padding: 40, 
+              borderRadius: 10,
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+            }}>
+              <h1 style={{ 
+                fontSize: 48, 
+                textAlign: 'center', 
+                color: '#333',
+                margin: '0 0 16px 0',
+                fontWeight: 'bold',
+              }}>水木易</h1>
+              <p style={{ 
+                fontSize: 24, 
+                textAlign: 'center', 
+                color: '#666',
+                margin: 0,
+              }}>总是站在科技与人文的十字路口</p>
             </div>
           </div>
         ),
@@ -176,6 +227,7 @@ export async function GET(request: NextRequest): Promise<ImageResponse | Respons
           headers: {
             'Cache-Control': 'public, max-age=60',
             'Content-Type': 'image/png',
+            'X-Content-Type-Options': 'nosniff',
           },
         }
       )

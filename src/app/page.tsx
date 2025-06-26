@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: "科学搞玄，哲学命理学研究",
     images: [
       {
-        url: `${SITE_URL}/images/og/screenshot.png`,
+        url: `${SITE_URL}/api/og?title=${encodeURIComponent("水木易")}&subtitle=${encodeURIComponent("科学搞玄，哲学命理学研究")}&type=default`,
         width: 1200,
         height: 630,
         alt: '水木易 - 个人网站首页',
@@ -31,10 +31,11 @@ export const metadata: Metadata = {
     description: "科学搞玄，哲学命理学研究",
     images: [
       {
-        url: `${SITE_URL}/images/og/screenshot.png`,
+        url: `${SITE_URL}/api/og?title=${encodeURIComponent("水木易")}&subtitle=${encodeURIComponent("科学搞玄，哲学命理学研究")}&type=default`,
         width: 1200,
         height: 630,
         alt: '水木易 - 个人网站首页',
+        type: 'image/png',
       }
     ],
     creator: '@shuimuyi',

@@ -10,6 +10,7 @@
 - 文章分类功能
 - 关于页面
 - **完整的Markdown样式支持**，包含所有标题级别的正确层次结构
+- **动态缩略图生成**，确保在社交媒体平台的完美展示
 
 ## 页面结构
 
@@ -23,6 +24,7 @@
 - Next.js 15 (App Router)
 - TypeScript
 - Tailwind CSS
+- Next.js OG 图片生成
 
 ## 开发指南
 
@@ -128,6 +130,46 @@ npm run slugs
 **🔄 Vercel自动部署测试 - 2025年1月20日 22:05:00**  
 **✅ 第二次测试：如果您在线上看到这个时间戳，说明自动部署完全正常！**  
 **🎯 Git作者信息已修复，Vercel集成已重新配置**
+
+## 🖼️ 动态缩略图优化 - 2025年6月26日
+
+### 💡 优化背景
+在分享链接到X.com（前Twitter）等社交媒体平台时，发现缩略图无法正确显示。经过分析发现，虽然项目已配置了动态OG图片生成API，但多数页面仍在使用静态图片，导致社交媒体爬虫无法正确获取图片。
+
+### 🛠️ 解决方案
+1. **全面使用动态生成**：将所有页面的OG图片改为使用`/api/og`端点动态生成
+2. **增强X.com兼容性**：
+   - 添加明确的`Content-Type: image/png`头部
+   - 设置`X-Content-Type-Options: nosniff`防止MIME类型嗅探
+   - 添加`Access-Control-Allow-Origin: *`支持跨域访问
+   - 优化缓存策略：`Cache-Control: public, max-age=31536000, immutable`
+3. **删除冗余文件**：移除不再使用的静态OG图片文件
+
+### ✅ 重构内容
+- **src/app/layout.tsx**：主布局页面OG图片改为动态生成
+- **src/app/page.tsx**：首页OG图片改为动态生成  
+- **src/app/article/[slug]/page.tsx**：文章页面已使用动态生成（无需修改）
+- **src/app/about/page.tsx**：关于页面已使用动态生成（无需修改）
+- **src/app/categories/page.tsx**：分类列表页面添加动态OG图片
+- **src/app/categories/[category]/page.tsx**：分类页面添加动态OG图片
+- **src/app/api/og/route.tsx**：优化图片生成逻辑，增强社交媒体兼容性
+- **删除文件**：`public/images/og/screenshot.png`、`public/images/og/default-og.svg`及整个`og`目录
+
+### 🎯 预期效果
+- ✅ **X.com分享**：链接分享到X.com时能正确显示动态生成的缩略图
+- ✅ **其他社交平台**：Facebook、LinkedIn等平台的兼容性得到增强
+- ✅ **SEO优化**：每个页面都有独特、相关的OG图片
+- ✅ **性能提升**：移除静态文件，减少不必要的资源加载
+- ✅ **维护简化**：无需手动创建和管理静态OG图片
+
+### 📝 技术细节
+- 使用Next.js 15的`next/og`包进行图片生成
+- Edge Runtime确保快速响应
+- 字体回退机制保证生成稳定性
+- 分类型设计：default、article、category三种样式
+- 严格的错误处理和备用方案
+
+**🚀 现在所有页面的缩略图都是动态生成的，确保在X.com等社交媒体平台上的完美展示！**
 
 ## 🔍 Vercel部署问题解决方案记录
 

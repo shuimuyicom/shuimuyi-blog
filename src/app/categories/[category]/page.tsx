@@ -4,6 +4,9 @@ import { notFound } from "next/navigation";
 import { getCategoryById } from "@/lib/categories";
 import { getPostsByCategory } from "@/lib/posts";
 
+// 使用www子域名确保与重定向一致
+const SITE_URL = "https://www.shuimuyi.com";
+
 export async function generateMetadata(
   props: { params: Promise<{ category: string }> }
 ): Promise<Metadata> {
@@ -17,9 +20,41 @@ export async function generateMetadata(
     };
   }
   
+  const title = `${categoryData.name} | 水木易`;
+  const description = `${categoryData.name}分类下的所有文章${categoryData.description ? `：${categoryData.description}` : ''}`;
+  
   return {
-    title: `${categoryData.name} | 水木易`,
-    description: `${categoryData.name}分类下的所有文章${categoryData.description ? `：${categoryData.description}` : ''}`,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: `${SITE_URL}/api/og?title=${encodeURIComponent(categoryData.name)}&subtitle=${encodeURIComponent(description)}&type=category`,
+          width: 1200,
+          height: 630,
+          alt: title,
+          type: "image/png",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [
+        {
+          url: `${SITE_URL}/api/og?title=${encodeURIComponent(categoryData.name)}&subtitle=${encodeURIComponent(description)}&type=category`,
+          width: 1200,
+          height: 630,
+          alt: title,
+          type: "image/png",
+        }
+      ],
+      site: "@shuimuyi",
+      creator: "@shuimuyi",
+    },
   };
 }
 
