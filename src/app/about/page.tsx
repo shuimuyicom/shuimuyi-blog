@@ -2,9 +2,6 @@ import { Metadata } from "next";
 import SocialLinks from "@/components/SocialLinks";
 import Link from "next/link";
 
-// 使用www子域名确保与重定向一致
-const SITE_URL = "https://www.shuimuyi.com";
-
 export const metadata: Metadata = {
   title: "关于 | 水木易",
   description: "了解关于水木易更多信息",
@@ -13,7 +10,7 @@ export const metadata: Metadata = {
     description: "了解关于水木易更多信息",
     images: [
       {
-        url: `${SITE_URL}/api/og?title=${encodeURIComponent("关于 | 水木易")}&subtitle=${encodeURIComponent("了解关于水木易更多信息")}`,
+        url: `/api/og?title=${encodeURIComponent("关于 | 水木易")}&subtitle=${encodeURIComponent("了解关于水木易更多信息")}`,
         width: 1200,
         height: 630,
         alt: "关于 | 水木易",
@@ -26,7 +23,7 @@ export const metadata: Metadata = {
     description: "了解关于水木易更多信息",
     images: [
       {
-        url: `${SITE_URL}/api/og?title=${encodeURIComponent("关于 | 水木易")}&subtitle=${encodeURIComponent("了解关于水木易更多信息")}`,
+        url: `/api/og?title=${encodeURIComponent("关于 | 水木易")}&subtitle=${encodeURIComponent("了解关于水木易更多信息")}`,
         width: 1200,
         height: 630,
         alt: "关于 | 水木易",

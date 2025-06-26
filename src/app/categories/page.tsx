@@ -2,9 +2,6 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { getAllCategories } from "@/lib/categories";
 
-// 使用www子域名确保与重定向一致
-const SITE_URL = "https://www.shuimuyi.com";
-
 export const metadata: Metadata = {
   title: "文章分类 | 水木易",
   description: "探索不同主题的文章，点击以浏览相关内容",
@@ -13,7 +10,7 @@ export const metadata: Metadata = {
     description: "探索不同主题的文章，点击以浏览相关内容",
     images: [
       {
-        url: `${SITE_URL}/api/og?title=${encodeURIComponent("文章分类")}&subtitle=${encodeURIComponent("探索不同主题的文章")}&type=category`,
+        url: `/api/og?title=${encodeURIComponent("文章分类")}&subtitle=${encodeURIComponent("探索不同主题的文章")}&type=category`,
         width: 1200,
         height: 630,
         alt: "文章分类 | 水木易",
@@ -27,7 +24,7 @@ export const metadata: Metadata = {
     description: "探索不同主题的文章，点击以浏览相关内容",
     images: [
       {
-        url: `${SITE_URL}/api/og?title=${encodeURIComponent("文章分类")}&subtitle=${encodeURIComponent("探索不同主题的文章")}&type=category`,
+        url: `/api/og?title=${encodeURIComponent("文章分类")}&subtitle=${encodeURIComponent("探索不同主题的文章")}&type=category`,
         width: 1200,
         height: 630,
         alt: "文章分类 | 水木易",

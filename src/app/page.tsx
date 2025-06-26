@@ -4,9 +4,6 @@ import Image from "next/image";
 import { getAllPosts } from "@/lib/posts";
 import SocialLinks from "@/components/SocialLinks";
 
-// 定义网站URL常量，确保使用与layout.tsx相同的配置
-const SITE_URL = "https://www.shuimuyi.com";
-
 export const metadata: Metadata = {
   title: "水木易 | 科学搞玄，哲学命理学研究",
   description: "科学搞玄，哲学命理学研究",
@@ -15,7 +12,7 @@ export const metadata: Metadata = {
     description: "科学搞玄，哲学命理学研究",
     images: [
       {
-        url: `${SITE_URL}/api/og?title=${encodeURIComponent("水木易")}&subtitle=${encodeURIComponent("科学搞玄，哲学命理学研究")}&type=default`,
+        url: `/api/og?title=${encodeURIComponent("水木易")}&subtitle=${encodeURIComponent("科学搞玄，哲学命理学研究")}&type=default`,
         width: 1200,
         height: 630,
         alt: '水木易 - 个人网站首页',
@@ -31,7 +28,7 @@ export const metadata: Metadata = {
     description: "科学搞玄，哲学命理学研究",
     images: [
       {
-        url: `${SITE_URL}/api/og?title=${encodeURIComponent("水木易")}&subtitle=${encodeURIComponent("科学搞玄，哲学命理学研究")}&type=default`,
+        url: `/api/og?title=${encodeURIComponent("水木易")}&subtitle=${encodeURIComponent("科学搞玄，哲学命理学研究")}&type=default`,
         width: 1200,
         height: 630,
         alt: '水木易 - 个人网站首页',

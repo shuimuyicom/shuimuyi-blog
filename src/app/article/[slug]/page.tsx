@@ -4,9 +4,6 @@ import { notFound } from "next/navigation";
 import { getPostBySlug, getAllPostSlugs, getAllPosts } from "@/lib/posts";
 import ScrollToTop from "@/components/ScrollToTop";
 
-// 使用www子域名确保与重定向一致
-const SITE_URL = "https://www.shuimuyi.com";
-
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   const post = await getPostBySlug(resolvedParams.slug);
@@ -29,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       authors: ["水木易"],
       images: [
         {
-          url: `${SITE_URL}/api/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent(post.excerpt || "")}&type=article&date=${encodeURIComponent(post.date || "")}&category=${encodeURIComponent(post.category?.name || "")}`,
+          url: `/api/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent(post.excerpt || "")}&type=article&date=${encodeURIComponent(post.date || "")}&category=${encodeURIComponent(post.category?.name || "")}`,
           width: 1200,
           height: 630,
           alt: post.title,
@@ -42,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: post.excerpt || post.title,
       images: [
         {
-          url: `${SITE_URL}/api/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent(post.excerpt || "")}&type=article&date=${encodeURIComponent(post.date || "")}&category=${encodeURIComponent(post.category?.name || "")}`,
+          url: `/api/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent(post.excerpt || "")}&type=article&date=${encodeURIComponent(post.date || "")}&category=${encodeURIComponent(post.category?.name || "")}`,
           width: 1200,
           height: 630,
           alt: post.title,

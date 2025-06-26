@@ -4,9 +4,6 @@ import { notFound } from "next/navigation";
 import { getCategoryById } from "@/lib/categories";
 import { getPostsByCategory } from "@/lib/posts";
 
-// 使用www子域名确保与重定向一致
-const SITE_URL = "https://www.shuimuyi.com";
-
 export async function generateMetadata(
   props: { params: Promise<{ category: string }> }
 ): Promise<Metadata> {
@@ -31,7 +28,7 @@ export async function generateMetadata(
       description,
       images: [
         {
-          url: `${SITE_URL}/api/og?title=${encodeURIComponent(categoryData.name)}&subtitle=${encodeURIComponent(description)}&type=category`,
+          url: `/api/og?title=${encodeURIComponent(categoryData.name)}&subtitle=${encodeURIComponent(description)}&type=category`,
           width: 1200,
           height: 630,
           alt: title,
@@ -45,7 +42,7 @@ export async function generateMetadata(
       description,
       images: [
         {
-          url: `${SITE_URL}/api/og?title=${encodeURIComponent(categoryData.name)}&subtitle=${encodeURIComponent(description)}&type=category`,
+          url: `/api/og?title=${encodeURIComponent(categoryData.name)}&subtitle=${encodeURIComponent(description)}&type=category`,
           width: 1200,
           height: 630,
           alt: title,

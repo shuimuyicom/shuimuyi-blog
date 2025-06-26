@@ -33,6 +33,10 @@ const loadFont = async (): Promise<ArrayBuffer | null> => {
  */
 export async function GET(request: NextRequest): Promise<ImageResponse | Response> {
   try {
+    // 记录请求信息，便于调试X.com爬虫
+    const userAgent = request.headers.get('user-agent') || 'unknown'
+    console.log('OG Image request from:', userAgent)
+    
     // 使用Next.js 15推荐的URL解析方式
     const { searchParams } = new URL(request.url)
     
@@ -42,6 +46,8 @@ export async function GET(request: NextRequest): Promise<ImageResponse | Respons
     const type = searchParams.has('type') ? searchParams.get('type') : 'default'
     const date = searchParams.get('date') || ''
     const category = searchParams.get('category') || ''
+    
+    console.log('Generating OG image for:', { title, subtitle, type })
     
     // 尝试加载字体，但即使失败也能继续
     const fontData = await loadFont()
@@ -167,16 +173,20 @@ export async function GET(request: NextRequest): Promise<ImageResponse | Respons
             }
           ]
         }),
-        // 添加明确的缓存控制和内容类型头，确保X.com等平台正确识别
+        // 优化头部，特别针对X.com爬虫
         headers: {
           'Cache-Control': 'public, max-age=31536000, immutable',
           'Content-Type': 'image/png',
           'X-Content-Type-Options': 'nosniff',
           'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET',
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Cross-Origin-Resource-Policy': 'cross-origin',
         },
       },
     )
     
+    console.log('OG image generated successfully')
     return imageResponse
   } catch (error: unknown) {
     console.error('Error generating OG image:', error instanceof Error ? error.message : String(error))
@@ -228,6 +238,7 @@ export async function GET(request: NextRequest): Promise<ImageResponse | Respons
             'Cache-Control': 'public, max-age=60',
             'Content-Type': 'image/png',
             'X-Content-Type-Options': 'nosniff',
+            'Cross-Origin-Resource-Policy': 'cross-origin',
           },
         }
       )

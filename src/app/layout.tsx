@@ -10,7 +10,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
 
-// 更新网站URL，使用www子域名确保与重定向一致
+// 使用相对URL，兼容不同域名
 const SITE_URL = "https://www.shuimuyi.com";
 const SITE_TITLE = "水木易";
 const SITE_DESCRIPTION = "总是站在科技与人文的十字路口";
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
     apple: "/favicon.ico",
   },
-  // 使用动态生成的OG图片，确保社交媒体平台正确读取
+  // 使用相对URL生成OG图片，确保域名自适应
   openGraph: {
     type: "website",
     locale: "zh_CN",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: SITE_TITLE,
     images: [
       {
-        url: `${SITE_URL}/api/og?title=${encodeURIComponent(SITE_TITLE)}&subtitle=${encodeURIComponent(SITE_DESCRIPTION)}&type=default`,
+        url: `/api/og?title=${encodeURIComponent(SITE_TITLE)}&subtitle=${encodeURIComponent(SITE_DESCRIPTION)}&type=default`,
         width: 1200,
         height: 630,
         alt: SITE_TITLE,
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: `${SITE_TITLE} | ${SITE_DESCRIPTION}`,
     description: "用智慧帮你渡过困境，用格局助你站得更高",
     images: [{
-      url: `${SITE_URL}/api/og?title=${encodeURIComponent(SITE_TITLE)}&subtitle=${encodeURIComponent(SITE_DESCRIPTION)}&type=default`,
+      url: `/api/og?title=${encodeURIComponent(SITE_TITLE)}&subtitle=${encodeURIComponent(SITE_DESCRIPTION)}&type=default`,
       width: 1200,
       height: 630,
       alt: `${SITE_TITLE} - 个人网站首页`,
